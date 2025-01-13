@@ -2,7 +2,7 @@
 	SQL Queries
 Basically they are commands that enable users to interact with
 databases; hence allowing extraction of valuable insights from data
-by filtering, aggregating, and manipulation information.ALTER
+by filtering, aggregating, and manipulation information
 
 They employ statements like SELECT, INSERT, UPDATE, DELETE to perform 
 operations on database tables. 
