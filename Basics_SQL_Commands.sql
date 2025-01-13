@@ -4,11 +4,9 @@ Basic Commands in SQL ( Structure Query Language ).
 We'll create a small database to store data for a library.
 */
 
--- 1. Create a simple library database
+-- Create a simple library database
 CREATE DATABASE library;
 
--- 2. Rename the database to shwifty_library
-ALTER DATABASE [library] MODIFY NAME = [hwifty_library];
 
 -- 1. Create a Table for the entity 'books' and add columns.
 CREATE TABLE books(
