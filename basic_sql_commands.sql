@@ -1,7 +1,6 @@
 
 /*
 Basic Commands in SQL ( Structure Query Language ).
-We'll create a small database to store data for a library.
 */
 
 -- Create a simple library database
