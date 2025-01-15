@@ -43,7 +43,7 @@ INSERT INTO employees (employee_id, first_name, last_name, department, manager_i
 (10, 'Olivia', 'Anderson', 'Engineering', 3, 73000.00);
 
 /*
-	3. Simple (Non Recursive) CTE:
+	3. Simple (Non-Recursive) CTE:
 In order to explain this we are going to use the CTE to filter out results
 from the 'employees' table and temporarily store them in a CTE;
 It will be used in the main query to perform certain operations
@@ -57,3 +57,14 @@ WITH marketing_team AS -- CTE that stores the filtered marketing team from the t
 )
 SELECT * FROM marketing_team -- main query that display the team records stored in the CTE
 ORDER BY salary DESC;
+
+/*
+	4. Recursive CTE
+It's useful for querying hierarchial data such as organizational databases
+where multiple employees report to one manager.
+
+*/
+WITH recursive_employee_table AS
+(
+
+)
