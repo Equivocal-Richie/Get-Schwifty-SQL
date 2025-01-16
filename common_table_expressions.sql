@@ -64,7 +64,18 @@ It's useful for querying hierarchial data such as organizational databases
 where multiple employees report to one manager.
 
 */
-WITH recursive_employee_table AS
+WITH RECURSIVE employee_hierarchy_table AS
 (
+-- Anchor query; selects the starting point for the records being fetched
+	SELECT employee_id, first_name, last_name, manager_id
+    FROM employees
+    WHERE employee_id = 1
+    UNION ALL
 
+-- Recursive query; joins itself with the 'employees' table to get employees reporting to each manager
+    SELECT e.employee_id, e.first_name, e.last_name, e.manager_id 
+    FROM employees e
+	INNER JOIN employee_hierarchy_table r
+	ON e.manager_id = r.employee_id
 )
+SELECT * FROM employee_hierarchy_table; -- returns all employee records of who answer to John Doe directly or indirectly
