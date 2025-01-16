@@ -79,3 +79,28 @@ WITH RECURSIVE employee_hierarchy_table AS
 	ON e.manager_id = r.employee_id
 )
 SELECT * FROM employee_hierarchy_table; -- returns all employee records of who answer to John Doe directly or indirectly
+
+
+-- 5. Using aggregate function (COUNT) in CTEs
+-- Let's count the number of employees per department and display the records
+WITH employee_department_number AS
+(
+	SELECT department, COUNT(*) AS employee_number -- Count calculates the number of employees
+    FROM employees
+    GROUP BY department -- Group By Clause organizes and summarizes records based on the listed column
+)
+SELECT * FROM employee_department_number
+ORDER BY employee_number DESC; -- Order By Clause orders results in descending order
+
+-- 5. Using aggregate function (AVERAGE) in CTEs
+-- Let's find the average salary per department
+WITH average_department_salary AS
+(
+	SELECT department, AVG(salary) AS averaged_salary -- AVG finds the average salaries
+    FROM employees
+    GROUP BY department -- Summarize and organize data based on the department
+)
+SELECT * FROM average_department_salary
+ORDER BY averaged_salary ASC; -- Order By Clause orders results in ascending order
+
+
