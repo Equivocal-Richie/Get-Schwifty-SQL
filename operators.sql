@@ -50,3 +50,12 @@ They are both used to filter data based on certain conditions
     WHERE condition_1 OR condition_2 OR ...condition_N;
 */
 -- 1.1 Example usage for AND operator
+SELECT * FROM EmployeeRecords
+WHERE Age > 34 AND Salary > 50000; -- filters out employees aged above 34 and earning above 50,000
+
+-- 1.2 Example usage of OR operator
+-- Filter out all employees who are either in IT or Engineering
+SELECT * FROM EmployeeRecords
+WHERE Department = "IT" OR Department = "Engineering"
+ORDER BY Age DESC -- orders the results from the oldest to the youngest
+
