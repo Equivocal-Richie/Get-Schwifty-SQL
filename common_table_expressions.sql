@@ -3,14 +3,14 @@
 It's an essential tool that defines temporary results sets that can be referenced 
 multiple times and allows break-down of complex logic to manageable parts
 
-They help with hierachical data representation, code reusability and simpe maintenance
+They help with hierarchical data representation, code reusability and simple maintenance
 
 	Syntax:
-WITH cte_name AS -- cte_name is a unique name for your cte
+WITH cte_name AS -- cte_name is a unique name for your CTE
 (
 SELECT query -- returns results that can be treated as a virtual table in the main query
-) -- end of etc
-SELECT * FROM cte_name; -- main query that references the cte
+) -- end of CTE
+SELECT * FROM cte_name; -- main query that references the CTE
 
 Types of CTEs:
 1. Simple (Non Recursive) CTE
