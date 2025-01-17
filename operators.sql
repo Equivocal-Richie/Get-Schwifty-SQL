@@ -57,5 +57,12 @@ WHERE Age > 34 AND Salary > 50000; -- filters out employees aged above 34 and ea
 -- Filter out all employees who are either in IT or Engineering
 SELECT * FROM EmployeeRecords
 WHERE Department = "IT" OR Department = "Engineering"
-ORDER BY Age DESC -- orders the results from the oldest to the youngest
+ORDER BY Age DESC; -- orders the results from the oldest to the youngest
+
+-- 1.3 Combination of both AND and OR operators
+SELECT * FROM EmployeeRecords
+WHERE Age <= 30 AND -- filters all employees aged less than or equal to 30
+(Department = "IT" OR Department = "Engineering") -- filters all employees working in either one of the departments
+LIMIT 1; -- limits the number of rows in the result set to 1
+
 
