@@ -92,7 +92,8 @@ WITH employee_department_number AS
 SELECT * FROM employee_department_number
 ORDER BY employee_number DESC; -- Order By Clause orders results in descending order
 
--- 5. Using aggregate function (AVERAGE) in CTEs
+
+-- 6. Using aggregate function (AVERAGE) in CTEs
 -- Let's find the average salary per department
 WITH average_department_salary AS
 (
