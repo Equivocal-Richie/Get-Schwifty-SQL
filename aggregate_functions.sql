@@ -32,7 +32,7 @@ INSERT INTO developers_table (Name, City, Salary, ID, DOJ) VALUES
 It's used provide the number of rows that match the condition given
 
 		Syntax:
-	SELECT COUNT (column_name)
+	SELECT COUNT(column_name)
 	FROM table_name
 	WHERE condition;
 */
@@ -47,10 +47,26 @@ It's used to provide the average value of a numeric column which helps to determ
 one's data. It's also useful to understand the mean value of a set of numbers.
 
 		Syntax:
-	SELECT AVG (column_name)
+	SELECT AVG(column_name)
 	FROM table_name
 	WHERE condition;
 */
-SELECT AVG (Salary)
+SELECT AVG(Salary)
 FROM developers_table; -- returns the average salary of the developers in the table
+
+
+
+/*
+	5. SUM() Function:
+This function provides the total sum of a numeric column and is ideal for calculating 
+totals such as sales, revenue and any other cumulative numeric value.
+
+		Syntax:
+	SELECT SUM(column_name)
+	FROM table_name
+	WHERE condition;
+*/
+SELECT SUM(Salary)
+FROM developers_table
+WHERE Salary >= 6000; -- returns the sum of the salaries above or equal to 6,000
 
