@@ -37,4 +37,20 @@ It's used provide the number of rows that match the condition given
 	WHERE condition;
 */
 SELECT COUNT(City)
-FROM developers_table;
+FROM developers_table; -- counts the number of cities in the table
+
+
+
+/*
+	4. AVG() Function:
+It's used to provide the average value of a numeric column which helps to determine central tendencies 
+one's data. It's also useful to understand the mean value of a set of numbers.
+
+		Syntax:
+	SELECT AVG (column_name)
+	FROM table_name
+	WHERE condition;
+*/
+SELECT AVG (Salary)
+FROM developers_table; -- returns the average salary of the developers in the table
+
