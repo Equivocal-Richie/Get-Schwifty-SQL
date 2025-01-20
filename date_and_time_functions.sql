@@ -110,3 +110,33 @@ Allows one to add a specified time interval to a date
 ^^ 'type' can be one of the following: MICROSECOND, SECOND, MINUTE, DAY, MONTH, SECOND etc ^^
 
 */
+-- Let's add an date and time interval to the patient with id = 003
+WITH interval_table AS  -- CTE to temporarily store the calculated time for the patient
+(
+	-- Inner CTE query that extracts the specified parts from the 'birth_date' expression
+	SELECT CONCAT(first_name, ' ',last_name) AS Full_Name, -- performs concatenation and returns the full name
+    DATE_ADD(birth_date, INTERVAL 1 YEAR) AS Birth_Year_Modified, -- modifies the year of birth from 'birth_date' date expression
+	DATE_ADD(birth_date, INTERVAL 2 MONTH) AS Birth_Month_Modified, --  modifies the month of birth from 'birth_date' date expression
+    DATE_ADD(birth_date, INTERVAL 20 MINUTE) AS Birth_Minute_Modified --  modifies the minute of birth from 'birth_date' date expression
+	FROM patients_table
+    WHERE id = 003 -- filters the patient with id = 003
+    GROUP BY Full_Name
+)
+-- Main query that displays all that is stored in the CTE 
+SELECT * FROM interval_table;
+
+
+/*
+	-- 7. DATEDIFF() Function
+Returns the date/time between two expressions.
+
+		SYNTAX:
+	SELECT DATEDIFF(interval, date/time1, date/time2)
+	FROM table_name;
+
+^^ 'interval' - minute/hour/month/year etc ^^
+^^ 'date/time1 & date/time2' - date/time expression ^^
+
+*/
+SELECT DATEDIFF(day, '2025-01-20', '2025-01-22') AS number_of_days;
+
