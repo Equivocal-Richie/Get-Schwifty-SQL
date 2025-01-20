@@ -40,7 +40,7 @@ SELECT CURTIME() AS CurrentTime;
 
 
 -- Let's create a table to use to explain the following date & time functions
-CREATE TABLE example_table 
+CREATE TABLE patients_table 
 (
 	id INT,
     first_name VARCHAR(20),
@@ -50,7 +50,7 @@ CREATE TABLE example_table
 );
 
 -- Insert values into the table 
-INSERT INTO example_table (id, first_name, last_name, city, birth_date) VALUES
+INSERT INTO patients_table (id, first_name, last_name, city, birth_date) VALUES
 (
 	(001, 'Richard', 'Muchoki', 'XYZ', 1830-11-12 12:30:20),
     (002, 'John', 'Musandu', 'ABC', '1820-01-13 11:43:21'),
@@ -59,12 +59,54 @@ INSERT INTO example_table (id, first_name, last_name, city, birth_date) VALUES
     (005, 'Tomy', 'Wayler', 'FGH', '1830-11-12 19:25:33')
 );
 
+
 /*
 	-- 4. DATE() Function
 Extracts the date part of date/time expression
 */
 SELECT CONCAT(first_name, ' ',last_name) AS Full_Name, -- performs concatenation and returns the full name
 DATE(birth_date) AS Birth_Date -- extracts the date part from 'birth_date'
-FROM example_table
+FROM patients_table
 WHERE city = "XYZ"; -- filters only the ones living in 'XYZ' city
 
+
+/*
+	-- 5. EXTRACT() Function
+Extracts a specific part from a DATE, TIMESTAMP OR DATETIME value such as the day, year, second etc
+
+		SYNTAX:
+	SELECT EXTRACT(unit FROM date)
+    FROM table_name;
+    
+^^ 'unit' used include MICROSECOND, SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, YEAR etc ^^
+^^ 'date' is a valid date expression in formats including YYYY-MM-DD etc ^^
+
+*/
+WITH patients_birthday AS  -- CTE to temporarily store the extracted parts for the patients
+(
+	-- Inner CTE query that extracts the specified parts from the 'birth_date' expression
+	SELECT CONCAT(first_name, ' ',last_name) AS Full_Name, -- performs concatenation and returns the full name
+    EXTRACT(YEAR FROM birth_date) AS Birth_Year, -- extracts the year of birth from 'birth_date' date expression
+	EXTRACT(MONTH FROM birth_date) AS Birth_Month, -- extracts the month of birth from 'birth_date' date expression
+    EXTRACT(DAY FROM birth_date) AS Birth_Day -- extracts the day of birth from 'birth_date' date expression
+	FROM patients_table
+    GROUP BY Full_Name
+)
+-- Main query that displays all that is stored in the CTE 
+SELECT * FROM patients_birthday
+ORDER BY Birth_Year DESC; 
+
+
+/*
+	-- 6. DATE_ADD () Function
+Allows one to add a specified time interval to a date
+
+		SYNTAX:
+	SELECT DATE_ADD(date, INTERVAL expr type)
+	FROM table_name;
+    
+^^ 'date' is a valid date expression ^^
+^^ 'expr' is the number of intervals to add ^^
+^^ 'type' can be one of the following: MICROSECOND, SECOND, MINUTE, DAY, MONTH, SECOND etc ^^
+
+*/
