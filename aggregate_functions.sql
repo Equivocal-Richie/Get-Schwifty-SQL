@@ -70,3 +70,44 @@ SELECT SUM(Salary)
 FROM developers_table
 WHERE Salary >= 6000; -- returns the sum of the salaries above or equal to 6,000
 
+
+
+/*
+	6. MIN() Function:
+Returns the smallest value in the column and can be used with various data types including
+numbers, strings, and dates.
+
+It can be used with the DISTINCT Keyword to return only the unique values in a column.
+
+		Syntax:
+	SELECT MIN(column_name)
+	FROM table_name
+	WHERE condition;
+*/
+SELECT MIN(DOJ)
+FROM developers_table; -- returns the smallest date value from the table
+
+
+
+/*
+	7. MAX() Function:
+Returns the largest value in the column and can be used with various data types including
+numbers, strings, and dates.
+
+It can be used in combinations with other SQL clauses and functions such as 
+GROUP BY, HAVING and subqueries.
+
+		Syntax:
+	SELECT MAX(column_name)
+	FROM table_name
+	WHERE condition;
+*/
+SELECT MAX(DOJ)
+FROM developers_table; -- returns the date with the largest value from the table
+
+-- Using MIN() and MAX() with other columns
+SELECT Name, MAX(Salary) AS max_salary
+FROM developers_table
+GROUP BY Name
+HAVING MIN(DOJ) >= "7 June"; -- returns the name and maximum salary of the developer with DOJ above or equal to 7th June
+
