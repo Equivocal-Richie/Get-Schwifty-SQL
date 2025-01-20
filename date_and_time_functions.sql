@@ -39,26 +39,22 @@ Retrieves current local time in HH:MM:SS format
 SELECT CURTIME() AS CurrentTime;
 
 
--- Let's create a table to use to explain the following date & time functions
-CREATE TABLE patients_table 
-(
-	id INT,
+-- Create the patients_table with appropriate data types
+CREATE TABLE patients_table (
+    id INT PRIMARY KEY, -- Use PRIMARY KEY for unique identification
     first_name VARCHAR(20),
     last_name VARCHAR(20),
     city VARCHAR(50),
     birth_date DATETIME
 );
 
--- Insert values into the table 
+-- Insert values into the table with correct date and time format
 INSERT INTO patients_table (id, first_name, last_name, city, birth_date) VALUES
-(
-	(001, 'Richard', 'Muchoki', 'XYZ', 1830-11-12 12:30:20),
-    (002, 'John', 'Musandu', 'ABC', '1820-01-13 11:43:21'),
-    (003, 'Jane', 'Macharia', 'DCE', '1830-01-30 17:30:30'),
-    (004, 'Mary', 'Magdalene', 'XYZ', '1823-07-12 12:26:20'),
-    (005, 'Tomy', 'Wayler', 'FGH', '1830-11-12 19:25:33')
-);
-
+    (1, 'Richard', 'Muchoki', 'XYZ', '1830-11-12 12:30:20'), 
+    (2, 'John', 'Musandu', 'ABC', '1820-01-13 11:43:21'),
+    (3, 'Jane', 'Macharia', 'DCE', '1830-01-30 17:30:30'),
+    (4, 'Mary', 'Magdalene', 'XYZ', '1823-07-12 12:26:20'),
+    (5, 'Tomy', 'Wayler', 'FGH', '1830-11-12 19:25:33');
 
 /*
 	-- 4. DATE() Function
@@ -90,7 +86,6 @@ WITH patients_birthday AS  -- CTE to temporarily store the extracted parts for t
 	EXTRACT(MONTH FROM birth_date) AS Birth_Month, -- extracts the month of birth from 'birth_date' date expression
     EXTRACT(DAY FROM birth_date) AS Birth_Day -- extracts the day of birth from 'birth_date' date expression
 	FROM patients_table
-    GROUP BY Full_Name
 )
 -- Main query that displays all that is stored in the CTE 
 SELECT * FROM patients_birthday
@@ -138,5 +133,5 @@ Returns the date/time between two expressions.
 ^^ 'date/time1 & date/time2' - date/time expression ^^
 
 */
-SELECT DATEDIFF(day, '2025-01-20', '2025-01-22') AS number_of_days;
+SELECT DATEDIFF('2025-01-20', '2025-01-22') AS number_of_days;
 
