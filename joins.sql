@@ -130,8 +130,10 @@ FROM Planets p -- Starts with planets, all are included no matter what
 LEFT JOIN Missions m ON p.PlanetID = m.PlanetID -- Looks for missions linked to the planets; if no mission is found then it shows NULL
 LEFT JOIN Explorers e ON m.ExplorerID = e.ExplorerID; -- matches with explorers; if a mission is found then the explorer will be displayed otherwise NULL
 
--- && Side Quest &&
 
+/*	
+-- && Side Quest &&
+*/
 -- Query to find planets that have no missions and no explorers assigned to them
 -- Results are sorted alphabetically by PlanetName
 WITH missions_table AS(
@@ -143,7 +145,9 @@ WITH missions_table AS(
 SELECT PlanetName
 FROM missions_table
 WHERE MissionName IS NULL AND ExplorerName IS NULL
-ORDER BY PlanetName;
+ORDER BY PlanetName; -- Luckily our tables have none; hence no output
+
+
 
 
 
