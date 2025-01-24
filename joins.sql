@@ -61,3 +61,34 @@ INSERT INTO Missions (MissionName, PlanetID, ExplorerID, LaunchYear) VALUES
 ('Ringed Wonder', 5, 3, 2023),
 ('Solar Flare', 1, 4, 2020),
 ('Venusian Skies', 2, 5, 2024);
+
+/*
+	-- 1. INNER JOIN
+Select all rows from both the tables as long as a condition is satisfied 
+
+	Think of it as saying: "I want data from both tables, 
+	but only if they match on something we agree upon!"
+
+		-- Syntax:
+	SELECT columns_you_want
+	FROM table1
+	INNER JOIN table2
+	ON table1.column_name = table2.column_name;
+
+*/
+
+/*
+	Example Query
+Let's use our Planets, Explorers, and Missions tables. 
+Suppose you want to find all missions with the explorer's name and the planet they were assigned to. 
+Here's how you'd write it:
+*/
+SELECT
+	M.MissionName,
+	E.ExplorerName,
+    P.PlanetName, 
+    M.LaunchYear
+FROM Missions M
+INNER JOIN Explorers E ON E.ExplorerID = M.ExplorerID -- Finds matching 'ExplorerID' in Explorers and Missions tables
+INNER JOIN Planets P ON P.PlanetID = M.PlanetID; -- Finds matching 'PlanetID' in Explorers and Missions tables
+
