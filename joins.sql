@@ -90,5 +90,8 @@ SELECT
     M.LaunchYear
 FROM Missions M
 INNER JOIN Explorers E ON E.ExplorerID = M.ExplorerID -- Finds matching 'ExplorerID' in Explorers and Missions tables
-INNER JOIN Planets P ON P.PlanetID = M.PlanetID; -- Finds matching 'PlanetID' in Explorers and Missions tables
+INNER JOIN Planets P ON P.PlanetID = M.PlanetID -- Finds matching 'PlanetID' in Explorers and Missions tables
+-- Suppose we wanted to narrow down the missions launched 2022 or later AND Planets with more than 0 moons
+WHERE m.LaunchYear >= 2022 AND p.NumberOfMoons > 0 
+ORDER BY m.LaunchYear DESC; -- orders them from recent launch year to the oldest
 
