@@ -30,10 +30,10 @@ VALUES
 SELECT * FROM EmployeeRecords;
 
 /*
-	1. AND and OR operators
+	-- 1. AND and OR operators
 They are both used to filter data based on certain conditions
 	
-    ** AND OPERATOR **
+		** AND OPERATOR **
     Allows you to filter based on multiple conditions all of which must be true
     for the record to be included in the result set
     
@@ -42,7 +42,7 @@ They are both used to filter data based on certain conditions
     WHERE condition_1 AND condition_2 AND ...condition_N;
     
     
-    ** OR OPERATOR **
+		** OR OPERATOR **
     Allows you to filter records where any one condition is true
     
 		Syntax:
