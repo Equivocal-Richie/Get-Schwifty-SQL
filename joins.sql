@@ -88,10 +88,62 @@ SELECT
 	E.ExplorerName,
     P.PlanetName, 
     M.LaunchYear
-FROM Missions M
+FROM Missions M -- Starts with missions, all missions are included no matter what
 INNER JOIN Explorers E ON E.ExplorerID = M.ExplorerID -- Finds matching 'ExplorerID' in Explorers and Missions tables
 INNER JOIN Planets P ON P.PlanetID = M.PlanetID -- Finds matching 'PlanetID' in Explorers and Missions tables
 -- Suppose we wanted to narrow down the missions launched 2022 or later AND Planets with more than 0 moons
 WHERE m.LaunchYear >= 2022 AND p.NumberOfMoons > 0 
 ORDER BY m.LaunchYear DESC; -- orders them from recent launch year to the oldest
+
+
+/*
+	-- 2. LEFT JOIN
+Imagine Rick hosting a party and inviting explorers to missions on planets. 
+However, some planets or explorers might not show up. 
+Rick still keeps track of all planets—even if they didn’t have any missions. 
+This is a LEFT JOIN! 
+
+It ensures that you get all the rows from the left table (the main guest list, or Planets) 
+and matches from the right table (Missions) wherever possible.
+
+If there’s no match, you’ll see NULL in the columns from the right table.
+
+		-- Syntax:
+	SELECT columns_you_want
+	FROM left_table
+	LEFT JOIN right_table
+	ON left_table.column_name = right_table.column_name;
+    
+*/
+
+/*
+	Example Query:
+Suppose Rick wants to know all the planets, 
+including those that haven’t been assigned to a mission yet.
+*/
+SELECT 
+	p.PlanetName, 
+    m.MissionName, 
+    e.ExplorerName, 
+    m.LaunchYear
+FROM Planets p -- Starts with planets, all are included no matter what
+LEFT JOIN Missions m ON p.PlanetID = m.PlanetID -- Looks for missions linked to the planets; if no mission is found then it shows NULL
+LEFT JOIN Explorers e ON m.ExplorerID = e.ExplorerID; -- matches with explorers; if a mission is found then the explorer will be displayed otherwise NULL
+
+-- && Side Quest &&
+
+-- Query to find planets that have no missions and no explorers assigned to them
+-- Results are sorted alphabetically by PlanetName
+WITH missions_table AS(
+  SELECT m.MissionName, p.PlanetName, e.ExplorerName, m.LaunchYear
+  FROM Missions m
+  LEFT JOIN Planets p ON m.PlanetID = p.PlanetID
+  LEFT JOIN Explorers e ON m.ExplorerID = e.ExplorerID
+)
+SELECT PlanetName
+FROM missions_table
+WHERE MissionName IS NULL AND ExplorerName IS NULL
+ORDER BY PlanetName;
+
+
 
