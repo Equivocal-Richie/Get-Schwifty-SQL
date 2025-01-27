@@ -153,7 +153,7 @@ ORDER BY PlanetName; -- Luckily our tables have none; hence no output
 	-- 3. CROSS JOIN
 A CROSS JOIN takes two tables and matches every row in the first table with every row in the second table, 
 creating all possible combinations. 
-It’s like chaos in the SQL universe—useful chaos, though. 🌌
+It’s like chaos in the SQL universe—useful chaos, though. 
 
 
 		-- Syntax:
@@ -170,7 +170,33 @@ regardless of whether a mission exists or not.
 */
 SELECT P.PlanetName, E.ExplorerName
 FROM Planets P -- Lists every planet
-CROSS JOIN Explorers E -- combines each planet with explorers ie if there are 5 planets and 2 explorers, you'll get 5 * 2 com
+CROSS JOIN Explorers E; -- combines each planet with explorers ie if there are 5 planets and 2 explorers, you'll get 5 * 2 com
 
 
+/*
+	-- 4. FULL JOIN
+It's a technique used to combine records from 2 or more tables.
 
+Unlike INNER Join which only returns rows where there are matches in both tables,
+FULL Join retrieves all rows from both tables, filling NULL values where there are no matches.
+
+		-- Syntax:
+	SELECT columns_you_want
+	FROM table1
+	FULL JOIN table2;
+    ON table1.column = table2.column;
+
+*/
+
+/*
+	Example Query:
+Suppose Rick wants a complete overview of all planets and missions, including:
+
+    - Planets without missions.
+    - Missions without assigned planets.
+*/
+
+SELECT p.PlanetName, m.MissionName, m.LaunchYear  
+FROM Planets p 
+FULL JOIN Missions m 
+ON p.PlanetID = m.PlanetID;
