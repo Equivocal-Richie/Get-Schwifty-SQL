@@ -149,5 +149,28 @@ ORDER BY PlanetName; -- Luckily our tables have none; hence no output
 
 
 
+/*
+	-- 3. CROSS JOIN
+A CROSS JOIN takes two tables and matches every row in the first table with every row in the second table, 
+creating all possible combinations. 
+It’s like chaos in the SQL universe—useful chaos, though. 🌌
+
+
+		-- Syntax:
+	SELECT columns_you_want
+	FROM table1
+	CROSS JOIN table2;
+
+*/
+
+/*
+	Example Query:
+Suppose Rick wants to see every possible combination of planets and explorers, 
+regardless of whether a mission exists or not.
+*/
+SELECT P.PlanetName, E.ExplorerName
+FROM Planets P -- Lists every planet
+CROSS JOIN Explorers E -- combines each planet with explorers ie if there are 5 planets and 2 explorers, you'll get 5 * 2 com
+
 
 
